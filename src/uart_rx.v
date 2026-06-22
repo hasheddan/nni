@@ -18,13 +18,12 @@ module uart_rx #(
 );
 
   // States
-  localparam S_IDLE = 3'b000;
-  localparam S_START_BIT = 3'b001;
-  localparam S_DATA_BIT = 3'b010;
-  localparam S_STOP_BIT = 3'b011;
-  localparam S_CLEANUP = 3'b100;
+  localparam S_IDLE = 2'b00;
+  localparam S_START_BIT = 2'b01;
+  localparam S_DATA_BIT = 2'b10;
+  localparam S_STOP_BIT = 2'b11;
 
-  reg [2:0] state;
+  reg [1:0] state;
 
   reg meta_sync_in, sync_in;
 
