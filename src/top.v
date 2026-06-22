@@ -16,6 +16,12 @@ module tt_um_hasheddan_nni (
     input  wire       rst_n     // reset_n - low to reset
 );
 
+  // Handle unused.
+  assign uio_out = 8'b0;
+  assign uio_oe = 8'b0;
+  assign uo_out[7:1] = 7'b0;
+  wire       _unused = &{ena, clk, rst_n, 1'b0};
+
   wire       rx_notif;
   wire [7:0] rx_data;
 
@@ -39,6 +45,7 @@ module tt_um_hasheddan_nni (
       .notif(tx_notif),
       .out  (uo_out[0])
   );
+
 
   reg  rx_notif_d;
   wire rx_sig = rx_notif & ~rx_notif_d;
@@ -126,11 +133,9 @@ module tt_um_hasheddan_nni (
             tx_idx  <= tx_idx + 1;
           end
         end
+        default: state <= S_IDLE;
       endcase
     end
   end
-
-  // Mark unused signals.
-  wire _unused = &{ena, uio_in, uio_out, uio_oe, 1'b0};
 
 endmodule
