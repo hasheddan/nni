@@ -1,0 +1,23 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Testing and Simulation
+*.vcd
+*.fst
+*.fst.hier
+runs
+tt_submission
+src/user_config.json
+src/config_merged.json
+test/sim_build
+test/__pycache__/
+test/results.xml
+test/gate_level_netlist.v
