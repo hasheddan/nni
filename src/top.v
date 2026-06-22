@@ -47,12 +47,8 @@ module tt_um_hasheddan_nni (
   );
 
 
-  reg  rx_notif_d;
+  reg rx_notif_d;
   wire rx_sig = rx_notif & ~rx_notif_d;
-
-  always @(posedge clk) begin
-    rx_notif_d <= rx_notif;
-  end
 
   // Raw 8-bit pixel values (RGGB).
   reg [7:0] raw[4];
@@ -70,6 +66,8 @@ module tt_um_hasheddan_nni (
   reg [1:0] state;
 
   always @(posedge clk) begin
+    rx_notif_d <= rx_notif;
+
     if (!rst_n) begin
       state    <= S_IDLE;
       raw_idx   <= 0;
